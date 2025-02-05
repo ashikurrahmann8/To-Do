@@ -14,12 +14,15 @@ let editId = null;
 
 const addEventListeners = () => {
   addBtnElm.addEventListener("click", addTask);
-  inputElm.addEventListener("input", inputChanges);
+  inputElm.addEventListener("keydown", inputChanges);
 
   searchElm.addEventListener("input", searchTask);
 };
 
-const inputChanges = () => {
+const inputChanges = (e) => {
+  if (e.key === "Enter") {
+    addTask();
+  }
   messageElm.textContent = "";
 };
 
