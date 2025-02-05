@@ -1,6 +1,7 @@
 const searchElm = document.querySelector(".search-input");
 const inputElm = document.querySelector(".task-input");
 const addBtnElm = document.querySelector(".add-btn");
+const updateBtnElm = document.querySelector(".update-btn");
 const tasklistElm = document.querySelector(".task-list");
 const editBtnElm = document.querySelector(".edit-btn");
 const deleteBtnElm = document.querySelector(".delete-btn");
@@ -9,10 +10,12 @@ const completeBtnElm = document.querySelector(".complete-btn");
 const messageElm = document.querySelector(".message");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let editId = null;
 
 const addEventListeners = () => {
-  addBtnElm.addEventListener("click", addTask);
+  // addBtnElm.addEventListener("click", addTask);
   inputElm.addEventListener("input", inputChanges);
+  updateBtnElm.addEventListener("click", updateTask);
 
   //   searchElm.addEventListener("input", searchTask);
 };
@@ -80,6 +83,24 @@ const undoTask = (id) => {
   const index = tasks.findIndex((task) => task.id === id);
   tasks[index].completed = false;
   localStorage.setItem("tasks", JSON.stringify(tasks));
+  renderTasks();
+};
+
+const editTask = (id) => {
+  const index = tasks.findIndex((task) => task.id === id);
+  inputElm.value = tasks[index].task;
+  editId = index;
+  renderTasks();
+};
+
+const updateTask = () => {
+  if (inputElm.value === "") {
+    messageElm.textContent = "Please enter a task";
+    return;
+  }
+  tasks[editId].task = inputElm.value;
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  inputElm.value = "";
   renderTasks();
 };
 
