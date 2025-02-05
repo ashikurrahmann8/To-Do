@@ -40,12 +40,22 @@ const renderTasks = () => {
     const taskElm = document.createElement("li");
     taskElm.classList.add("task");
     taskElm.innerHTML = `
-    <span class="task-name">${task.task}</span>
+    <span class="task-name ${task.completed ? "completed" : ""}">${
+      task.task
+    }</span>
             <div class="task-actions">
-              <button class="edit-btn" onclick = "editTask(${task.id})">Edit</button>
-              <button class="delete-btn" onclick = "deleteTask(${task.id})">Delete</button>
-              <button class="complete-btn" onclick = "completeTask(${task.id})">Complete</button>
-              <button class="undo-btn" onclick = "undoTask(${task.id})">Undo</button>
+              <button class="edit-btn" onclick = "editTask(${
+                task.id
+              })">Edit</button>
+              <button class="delete-btn" onclick = "deleteTask(${
+                task.id
+              })">Delete</button>
+              ${
+                task.completed
+                  ? `<button class="undo-btn" onclick = "undoTask(${task.id})">Undo</button>`
+                  : `<button class="complete-btn" onclick = "completeTask(${task.id})">Complete</button>`
+              }
+              
             </div>
             `;
     tasklistElm.appendChild(taskElm);
@@ -55,6 +65,13 @@ const renderTasks = () => {
 
 const deleteTask = (id) => {
   tasks = tasks.filter((task) => task.id !== id);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  renderTasks();
+};
+
+const completeTask = (id) => {
+  const index = tasks.findIndex((task) => task.id === id);
+  tasks[index].completed = true;
   localStorage.setItem("tasks", JSON.stringify(tasks));
   renderTasks();
 };
