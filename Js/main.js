@@ -28,7 +28,9 @@ const inputChanges = (e) => {
 
 const addTask = () => {
   const task = inputElm.value;
-  const id = tasks.length + 1;
+  const id = Date.now();
+  console.log(id);
+
   if (task === "") {
     messageElm.textContent = "Please enter a task";
     return;
@@ -48,11 +50,11 @@ const addTask = () => {
 const renderTasks = (filteredTasks) => {
   let finalTasks = filteredTasks || tasks;
   tasklistElm.innerHTML = "";
-  finalTasks.map((task) => {
+  finalTasks.map((task, index) => {
     const taskElm = document.createElement("li");
     taskElm.classList.add("task");
     taskElm.innerHTML = `
-    <span class="task-name ${task.completed ? "completed" : ""}">${
+    <span class="task-name ${task.completed ? "completed" : ""}">${index + 1}  ${
       task.task
     }</span>
             <div class="task-actions">
