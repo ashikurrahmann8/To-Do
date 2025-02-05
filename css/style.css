@@ -3,9 +3,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body {
+}
+
+body {
     font-family: "Arial", sans-serif;
     background-color: #f4f7fc;
     color: #1f2937;
@@ -13,45 +13,80 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-  }
-  
-  header {
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+}
+
+header {
     background-color: #1e293b;
     color: #ffffff;
     text-align: center;
     padding: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  header h1 {
+    width: 100%;
+}
+
+header h1 {
     font-size: 1.8rem;
     font-weight: bold;
-  }
-  
-  main {
+}
+
+main {
     padding: 2rem;
     display: flex;
     justify-content: center;
     flex-grow: 1;
-  }
-  
-  .todo-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.todo-container {
     background: #ffffff;
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 500px;
-    max-height: calc(100vh - 20%);
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.task-list {
+    list-style: none;
+    margin-top: 1rem;
     overflow-y: auto;
-  }
-  
-  .input-group {
+    flex-grow: 1;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f4f7fc;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.task-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.task-list::-webkit-scrollbar-track {
+    background: #f4f7fc;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.input-group {
     display: flex;
     margin-bottom: 1rem;
-  }
-  
-  .input-group input {
+    width: 100%;
+}
+
+.input-group input {
     flex: 1;
     padding: 0.75rem;
     border: 1px solid #d1d5db;
@@ -60,74 +95,80 @@
     color: #4b5563;
     outline: none;
     transition: border-color 0.2s;
-  }
-  
-  .input-group input:focus {
+    margin-right: 10px;
+}
+
+.input-group input:focus {
     border-color: #2563eb;
-  }
-  
-  .input-group button {
+}
+
+.input-group button {
     padding: 0.75rem 1rem;
     font-size: 1rem;
     border-radius: 8px;
     border: none;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
-  }
-  
-  .add-btn {
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.add-btn {
     background-color: #10b981;
     color: #ffffff;
-  }
-  
-  .add-btn:hover {
+}
+
+.add-btn:hover {
     background-color: #059669;
-  }
-  
-  .task-list {
-    list-style: none;
-    margin-top: 1rem;
-  }
-  
-  .message {
+}
+
+.message {
     text-align: center;
     font-size: 1.2rem;
     color: #ff7171;
     margin-top: 1rem;
-  }
-  
-  .task {
+}
+
+.task {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     padding: 1rem;
     background: #f9fafb;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     margin-bottom: 1rem;
     transition: transform 0.2s;
-  }
-  
-  .task:hover {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+}
+
+.task:hover {
     transform: translateY(-2px);
-  }
-  
-  .task-name {
+}
+
+.task-name {
     font-size: 1rem;
     color: #1f2937;
-  }
-  
-  .task-name.completed {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.task-name.completed {
     text-decoration: line-through;
     color: #6b7280;
-  }
-  
-  .task-actions {
+}
+
+.task-actions {
     display: flex;
     gap: 0.5rem;
-  }
-  
-  .task-actions button {
+    flex-wrap: wrap;
+}
+
+.task-actions button {
     padding: 0.5rem 0.75rem;
     font-size: 0.9rem;
     font-weight: bold;
@@ -135,45 +176,45 @@
     cursor: pointer;
     border: none;
     transition: background-color 0.2s, color 0.2s;
-  }
-  
-  .edit-btn {
+}
+
+.edit-btn {
     background-color: #3b82f6;
     color: #ffffff;
-  }
-  
-  .edit-btn:hover {
+}
+
+.edit-btn:hover {
     background-color: #2563eb;
-  }
-  
-  .delete-btn {
+}
+
+.delete-btn {
     background-color: #ef4444;
     color: #ffffff;
-  }
-  
-  .delete-btn:hover {
+}
+
+.delete-btn:hover {
     background-color: #dc2626;
-  }
-  
-  .undo-btn {
+}
+
+.undo-btn {
     background-color: #fbbf24;
     color: #1f2937;
-  }
-  
-  .undo-btn:hover {
+}
+
+.undo-btn:hover {
     background-color: #f59e0b;
-  }
-  
-  .complete-btn {
+}
+
+.complete-btn {
     background-color: #10b981;
     color: #ffffff;
-  }
-  
-  .complete-btn:hover {
+}
+
+.complete-btn:hover {
     background-color: #059669;
-  }
-  
-  footer {
+}
+
+footer {
     text-align: center;
     margin-top: auto;
     padding: 1rem;
@@ -181,48 +222,80 @@
     color: #ffffff;
     font-size: 0.9rem;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
     main {
-      padding: 1rem;
+        padding: 1rem;
     }
-  
+
     .todo-container {
-      padding: 1.5rem;
+        padding: 1.5rem;
+        height: 75vh;
     }
-  
-    .task {
-      flex-direction: column;
-      align-items: flex-start;
+
+    .input-group input {
+        font-size: 0.9rem;
+        padding: 0.6rem;
     }
-  
-    .task-actions {
-      margin-top: 0.5rem;
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
+
+    .input-group button {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+        width: auto;
     }
-  }
-  
-  @media (max-width: 480px) {
+
+    .task-actions button {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
     header h1 {
-      font-size: 1.5rem;
+        font-size: 1.5rem;
     }
-  
+
     .todo-container {
-      padding: 1rem;
+        padding: 1rem;
+        height: 70vh;
     }
-  
+
+    .input-group input,
+    .input-group button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .add-btn {
+        padding: 0.5rem 1rem;
+    }
+
+    .task {
+        padding: 0.8rem;
+    }
+
+    .task-name {
+        font-size: 0.9rem;
+    }
+
+    .task-actions button {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
+
+    /* Fix for narrow screens */
     .input-group {
-      flex-direction: column;
-      gap: 0.5rem;
+        flex-direction: column;
     }
-  
-    .task-actions {
-      flex-direction: column;
-      gap: 0.25rem;
+
+    .input-group button {
+        margin-top: 10px;
+        width: 100%;
     }
-  }
-  
+}
