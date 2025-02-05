@@ -54,9 +54,9 @@ const renderTasks = (filteredTasks) => {
     const taskElm = document.createElement("li");
     taskElm.classList.add("task");
     taskElm.innerHTML = `
-    <span class="task-name ${task.completed ? "completed" : ""}">${index + 1}  ${
-      task.task
-    }</span>
+    <span class="task-name ${task.completed ? "completed" : ""}">${
+      index + 1
+    }  ${task.task}</span>
             <div class="task-actions">
               <button class="edit-btn" onclick = "editTask(${
                 task.id
